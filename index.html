@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FDE Dojo - Getting Started</title>
+<style>
+  body {
+    font-family: -apple-system, Segoe UI, Arial, sans-serif;
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #222;
+    line-height: 1.55;
+  }
+  h1 { font-size: 2em; border-bottom: 3px solid #333; padding-bottom: 10px; }
+  h2 { margin-top: 2em; color: #1a4d8f; }
+  .badge {
+    display: inline-block;
+    background: #1a4d8f;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-right: 6px;
+  }
+  .step {
+    background: #f6f7f9;
+    border-left: 4px solid #1a4d8f;
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 4px;
+  }
+  .unit {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+  }
+  .unit h3 { margin-top: 0; }
+  code {
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95em;
+  }
+  .warn {
+    background: #fff4e5;
+    border-left: 4px solid #d98a1a;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+  footer {
+    margin-top: 3em;
+    font-size: 0.85em;
+    color: #777;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<h1>FDE Dojo</h1>
+<p><span class="badge">Run by Chiron</span><span class="badge">Sandbox only</span></p>
+
+<p>
+Welcome. The FDE Dojo trains experienced engineers to operate as
+<strong>Forward Deployed Engineers</strong> inside an Agentic SDLC pipeline:
+owning a piece of work end-to-end (requirements, design, build, test,
+deploy) alongside AI agents, not just waiting for handoffs.
+</p>
+
+<p>
+Every exercise here runs in a <strong>sandbox</strong> - a scratch JIRA
+project and a scratch GitHub repo that you or your program admin set up.
+Nothing you do here touches production systems.
+</p>
+
+<h2>Before you start</h2>
+
+<div class="step">
+<strong>1. Install OpenCode</strong> (or whatever agent runtime your
+program admin specifies) on your machine.
+</div>
+
+<div class="step">
+<strong>2. Get access to a model provider.</strong> Chiron runs on an LLM -
+typically a <strong>GitHub Copilot license</strong>, or an internal Azure AI
+Foundry endpoint if your organization provides one. Confirm with your
+program admin which to use before you begin.
+</div>
+
+<div class="step">
+<strong>3. Get sandbox access.</strong> You will need:
+<ul>
+<li>A scratch JIRA project (not your company's real project)</li>
+<li>A scratch GitHub repository you can branch and open PRs against</li>
+</ul>
+Your program admin provisions these for your cohort.
+</div>
+
+<div class="warn">
+<strong>Do not</strong> point any exercise at a real production JIRA project
+or GitHub repository. The Dojo is a practice space - mistakes here are free;
+mistakes in production are not.
+</div>
+
+<h2>How it works</h2>
+<p>
+The Dojo has two tracks, taken in order:
+</p>
+<ul>
+<li><strong>Track A - FDE Fundamentals:</strong> the role itself - turning
+an ambiguous business ask into a problem statement, embedding with
+stakeholders, and judging the right delivery mechanism. Nothing here is
+specific to agentic pipelines.</li>
+<li><strong>Track B - Agentic SDLC Specialization:</strong> how to execute
+once an agentic pipeline is the chosen delivery mechanism - ticket-state
+discipline, branch/PR traceability, working alongside build/test agents.</li>
+</ul>
+<p>
+You work through each track's units in order. Each unit ends with a
+scenario exercise. Chiron grades your exercise output against a rubric,
+tells you your score and gaps, and decides whether you advance or repeat
+the unit. You can ask Chiron to explain any gap in as much depth as you
+want - the point is understanding, not just a passing score.
+</p>
+
+<h2>Track A - FDE Fundamentals</h2>
+
+<div class="unit">
+<h3>Unit A0 - What an FDE actually is</h3>
+<p>The embedded, outcome-owning archetype, contrasted with a typical
+feature-team role.</p>
+</div>
+
+<div class="unit">
+<h3>Unit A1 - From business objective to problem statement</h3>
+<p>Translating an ambiguous ask into a concrete, testable problem
+statement.</p>
+</div>
+
+<div class="unit">
+<h3>Unit A2 - Stakeholder embedding and trust</h3>
+<p>Working directly with the business/customer; reading unstated
+constraints.</p>
+</div>
+
+<div class="unit">
+<h3>Unit A3 - Solution judgment (build vs. buy vs. automate)</h3>
+<p>Choosing the right delivery mechanism for the problem - an agentic
+pipeline is one option, not the default.</p>
+</div>
+
+<div class="unit">
+<h3>Unit A4 - Rapid prototyping under ambiguity</h3>
+<p>Getting to a demonstrable thing fast to de-risk assumptions.</p>
+</div>
+
+<h2>Track B - Agentic SDLC Specialization</h2>
+<p><em>Prerequisite: Track A complete.</em></p>
+
+<div class="unit">
+<h3>Unit B0 - Orientation</h3>
+<p>What an Agentic SDLC is, why the FDE model fits it, and how to read a
+ticket's full lifecycle.</p>
+</div>
+
+<div class="unit">
+<h3>Unit B1 - The Pipeline</h3>
+<p>Choreography vs orchestration, label-based state machines, System of
+Engagement vs System of Execution.</p>
+</div>
+
+<div class="unit">
+<h3>Unit B2 - Requirements and Design</h3>
+<p>Writing an "agent-ready" ticket; how specs become sub-tasks.</p>
+</div>
+
+<div class="unit">
+<h3>Unit B3 - Build and Handoff</h3>
+<p>Branch/PR conventions for traceability; working alongside build/test
+agents.</p>
+</div>
+
+<div class="unit">
+<h3>Unit B4 - Deploy / Change Management</h3>
+<p>What "done" means in an agentic pipeline; the FDE's role at cutover.</p>
+</div>
+
+<div class="unit">
+<h3>Capstone</h3>
+<p>One sandboxed scenario, start to finish, across all of Track B.</p>
+</div>
+
+<h2>Starting your first session</h2>
+<p>
+Open your agent runtime and say something like:
+</p>
+<p><code>Chiron, I'm starting the FDE Dojo, Track A Unit 0.</code></p>
+<p>
+Chiron will gauge what you already know before explaining anything -
+answer honestly, it shapes how deep the first explanation goes.
+</p>
+
+<footer>
+FDE Dojo program charter: see <code>charter.md</code> in this repository.
+Repo: <a href="https://github.com/mchellappa/chiron">github.com/mchellappa/chiron</a>.
+Tracking: CRTTIN-8244.
+</footer>
+
+</body>
+</html>
