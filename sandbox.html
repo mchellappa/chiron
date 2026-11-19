@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FDE Dojo - Sandbox</title>
+<style>
+  body {
+    font-family: -apple-system, Segoe UI, Arial, sans-serif;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    color: #222;
+    line-height: 1.5;
+  }
+  h1 { border-bottom: 3px solid #333; padding-bottom: 10px; }
+  h2 { color: #1a4d8f; margin-top: 2em; }
+  .panel {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    background: #fafafa;
+  }
+  .ticket {
+    border: 2px solid #1a4d8f;
+    border-radius: 6px;
+    padding: 14px 18px;
+    background: #fff;
+    margin-bottom: 14px;
+  }
+  .label {
+    display: inline-block;
+    background: #1a4d8f;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    margin-right: 6px;
+    font-family: monospace;
+  }
+  button {
+    background: #1a4d8f;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 4px 6px 4px 0;
+    font-size: 0.9em;
+  }
+  button:hover { background: #123a6b; }
+  button.danger { background: #a83232; }
+  button.danger:hover { background: #7a2424; }
+  input[type=text] {
+    width: 100%;
+    max-width: 420px;
+    padding: 7px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.95em;
+  }
+  .ok { color: #1a7a33; font-weight: bold; }
+  .bad { color: #a83232; font-weight: bold; }
+  .log {
+    background: #111;
+    color: #ddd;
+    font-family: monospace;
+    font-size: 0.85em;
+    padding: 12px 16px;
+    border-radius: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .log div { margin-bottom: 3px; }
+  .warn {
+    background: #fff4e5;
+    border-left: 4px solid #d98a1a;
+    padding: 10px 14px;
+    margin: 14px 0;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  footer {
+    margin-top: 3em;
+    font-size: 0.85em;
+    color: #777;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<h1>FDE Dojo - Sandbox</h1>
+<p>
+This page simulates a JIRA ticket board and a GitHub branch/PR check,
+entirely in your browser. Nothing here touches a real JIRA project or
+GitHub repo. Use it for the Unit B1 and Unit B3 exercises, then click
+<strong>Export my work</strong> at the bottom and tell Chiron to read the
+downloaded file from your local session.
+</p>
+
+<div class="warn">
+This is a practice surface only. Your actions are recorded locally in this
+page and only leave your browser when you click Export.
+</div>
+
+<h2>Panel 1 - Mock JIRA ticket (Unit B1)</h2>
+<div class="panel">
+  <div class="ticket">
+    <strong>SANDBOX-101</strong>: Add renewal reminder email
+    <div style="margin-top:8px;">
+      Current label: <span class="label" id="currentLabel">stage:requirements-ready</span>
+    </div>
+  </div>
+  <p>Transition the ticket. Some transitions are invalid - try one and see
+  what the log says.</p>
+  <div>
+    <button onclick="transition('stage:requirements-running')">Start Requirements</button>
+    <button onclick="transition('stage:requirements-done')">Finish Requirements</button>
+    <button onclick="transition('stage:design-ready')">Hand to Design</button>
+    <button onclick="transition('stage:design-await')">Flag Needs-Confirm</button>
+    <button onclick="transition('stage:build-ready')">Skip to Build</button>
+    <button class="danger" onclick="transition('stage:blocked')">Mark Blocked</button>
+  </div>
+  <h3 style="margin-top:20px;">Event log</h3>
+  <div class="log" id="ticketLog"></div>
+</div>
+
+<h2>Panel 2 - Mock GitHub branch/PR check (Unit B3)</h2>
+<div class="panel">
+  <p>Enter a branch name as if you were about to open it for SANDBOX-101:</p>
+  <input type="text" id="branchInput" placeholder="feature/SANDBOX-101-add-renewal-reminder">
+  <button onclick="checkBranch()">Validate branch name</button>
+  <p id="branchResult"></p>
+
+  <p style="margin-top:18px;">Enter a PR title:</p>
+  <input type="text" id="prInput" placeholder="Add renewal reminder email (Refs SANDBOX-101)">
+  <button onclick="checkPR()">Validate PR title</button>
+  <p id="prResult"></p>
+
+  <h3 style="margin-top:20px;">Event log</h3>
+  <div class="log" id="ghLog"></div>
+</div>
+
+<h2>Export</h2>
+<div class="panel">
+  <p>When you're done, export your session so Chiron can review exactly
+  what you did (not just what you report).</p>
+  <button onclick="exportWork()">Export my work</button>
+</div>
+
+<footer>
+  FDE Dojo sandbox. See <code>charter.md</code> for the full curriculum.
+  Tracking: CRTTIN-8244.
+</footer>
+
+<script>
+  var VALID_TICKET_KEY = "SANDBOX-101";
+  var state = {
+    ticketKey: VALID_TICKET_KEY,
+    currentLabel: "stage:requirements-ready",
+    ticketEvents: [],
+    branchAttempts: [],
+    prAttempts: []
+  };
+
+  var VALID_TRANSITIONS = {
+    "stage:requirements-ready": ["stage:requirements-running"],
+    "stage:requirements-running": ["stage:requirements-done"],
+    "stage:requirements-done": ["stage:design-ready"],
+    "stage:design-ready": ["stage:design-await", "stage:build-ready"],
+    "stage:design-await": ["stage:build-ready"]
+  };
+
+  function logTo(elId, text, cls) {
+    var el = document.getElementById(elId);
+    var line = document.createElement("div");
+    if (cls) line.className = cls;
+    var ts = new Date().toISOString().split("T")[1].split(".")[0];
+    line.textContent = "[" + ts + "] " + text;
+    el.appendChild(line);
+    el.scrollTop = el.scrollHeight;
+  }
+
+  function transition(target) {
+    var from = state.currentLabel;
+    var allowed = VALID_TRANSITIONS[from] || [];
+    var isValid = allowed.indexOf(target) !== -1;
+    var event = {
+      from: from,
+      to: target,
+      valid: isValid,
+      timestamp: new Date().toISOString()
+    };
+    state.ticketEvents.push(event);
+
+    if (isValid) {
+      state.currentLabel = target;
+      document.getElementById("currentLabel").textContent = target;
+      logTo("ticketLog", "OK: " + from + " -> " + target, "ok");
+    } else {
+      logTo("ticketLog", "REJECTED: " + from + " -> " + target +
+        " (not a valid next state - a real choreography poller would not advance this)", "bad");
+    }
+  }
+
+  function checkBranch() {
+    var val = document.getElementById("branchInput").value.trim();
+    var pattern = /^(feature|fix|chore|docs)\/SANDBOX-101-[a-z0-9-]+$/;
+    var valid = pattern.test(val);
+    state.branchAttempts.push({ value: val, valid: valid, timestamp: new Date().toISOString() });
+    var resEl = document.getElementById("branchResult");
+    if (valid) {
+      resEl.innerHTML = '<span class="ok">Valid - matches type/KEY-summary and would auto-link to SANDBOX-101.</span>';
+      logTo("ghLog", "Branch OK: " + val, "ok");
+    } else {
+      resEl.innerHTML = '<span class="bad">Invalid - expected pattern: feature|fix|chore|docs/SANDBOX-101-kebab-summary</span>';
+      logTo("ghLog", "Branch REJECTED: " + val, "bad");
+    }
+  }
+
+  function checkPR() {
+    var val = document.getElementById("prInput").value.trim();
+    var valid = val.indexOf("SANDBOX-101") !== -1;
+    state.prAttempts.push({ value: val, valid: valid, timestamp: new Date().toISOString() });
+    var resEl = document.getElementById("prResult");
+    if (valid) {
+      resEl.innerHTML = '<span class="ok">Valid - references SANDBOX-101, integration would link it.</span>';
+      logTo("ghLog", "PR title OK: " + val, "ok");
+    } else {
+      resEl.innerHTML = '<span class="bad">Invalid - PR title does not reference SANDBOX-101, it will not auto-link.</span>';
+      logTo("ghLog", "PR title REJECTED: " + val, "bad");
+    }
+  }
+
+  function exportWork() {
+    var payload = {
+      exportedAt: new Date().toISOString(),
+      ticketKey: state.ticketKey,
+      finalLabel: state.currentLabel,
+      ticketEvents: state.ticketEvents,
+      branchAttempts: state.branchAttempts,
+      prAttempts: state.prAttempts
+    };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var stamp = payload.exportedAt.replace(/[:.]/g, "-");
+    a.href = url;
+    a.download = "fde-dojo-sandbox-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>

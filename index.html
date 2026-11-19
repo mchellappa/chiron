@@ -204,6 +204,26 @@ Chiron will gauge what you already know before explaining anything -
 answer honestly, it shapes how deep the first explanation goes.
 </p>
 
+<h2>Practice sandbox</h2>
+<div class="step">
+<p>
+Unit B1 and Unit B3 have a hands-on practice page:
+<a href="sandbox.html"><strong>sandbox.html</strong></a> - a mock JIRA
+ticket board and a mock GitHub branch/PR validator, entirely client-side.
+Nothing on that page touches a real JIRA project or GitHub repo.
+</p>
+<p>
+When you're done, click <strong>Export my work</strong> on that page. It
+downloads a JSON file recording everything you tried (including mistakes -
+that's fine, it's a sandbox). Then tell Chiron where the file landed, e.g.:
+</p>
+<p><code>Chiron, grade my sandbox export at C:\Users\you\Downloads\fde-dojo-sandbox-....json</code></p>
+<p>
+Chiron reads the actual recorded actions, not just what you report, so
+feedback is based on what really happened.
+</p>
+</div>
+
 <footer>
 FDE Dojo program charter: see <code>charter.md</code> in this repository.
 Repo: <a href="https://github.com/mchellappa/chiron">github.com/mchellappa/chiron</a>.
