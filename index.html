@@ -2,232 +2,424 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FDE Dojo - Getting Started</title>
 <style>
-  body {
-    font-family: -apple-system, Segoe UI, Arial, sans-serif;
-    max-width: 860px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #222;
-    line-height: 1.55;
+  :root {
+    --navy: #0f2a4a;
+    --blue: #1a4d8f;
+    --blue-light: #eaf1fb;
+    --accent: #c9972c;
+    --ink: #1c1f26;
+    --muted: #5b6372;
+    --border: #e1e5eb;
+    --bg: #f7f8fa;
   }
-  h1 { font-size: 2em; border-bottom: 3px solid #333; padding-bottom: 10px; }
-  h2 { margin-top: 2em; color: #1a4d8f; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header.hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff;
+    padding: 56px 24px 64px;
+    text-align: center;
+  }
+  header.hero h1 {
+    margin: 0 0 10px;
+    font-size: 2.4em;
+    letter-spacing: 0.02em;
+  }
+  header.hero p {
+    margin: 0 auto;
+    max-width: 640px;
+    color: #dce6f5;
+    font-size: 1.05em;
+  }
+  .badges { margin-top: 18px; }
   .badge {
     display: inline-block;
-    background: #1a4d8f;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
     color: #fff;
-    padding: 2px 10px;
-    border-radius: 4px;
+    padding: 4px 14px;
+    border-radius: 999px;
     font-size: 0.8em;
-    margin-right: 6px;
+    margin: 0 4px;
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 12px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    z-index: 10;
+    flex-wrap: wrap;
+  }
+  nav.toc a { color: var(--muted); }
+  nav.toc a:hover { color: var(--blue); text-decoration: none; }
+
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  section { margin-bottom: 56px; }
+
+  h2 {
+    color: var(--navy);
+    font-size: 1.5em;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95em;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
   }
   .step {
-    background: #f6f7f9;
-    border-left: 4px solid #1a4d8f;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .step strong.num {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.8em;
+    margin-right: 8px;
+  }
+
+  .warn {
+    background: #fff8ec;
+    border: 1px solid #f1d9a3;
+    border-left: 4px solid var(--accent);
     padding: 14px 18px;
-    margin: 14px 0;
+    border-radius: 8px;
+    font-size: 0.92em;
+  }
+
+  .track-label {
+    display: inline-block;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 3px 10px;
     border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .unit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
   }
   .unit {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 14px 18px;
-    margin: 10px 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(15,42,74,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .unit h3 { margin-top: 0; }
-  code {
-    background: #eee;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.95em;
+  .unit h3 {
+    margin: 0 0 8px;
+    font-size: 1.05em;
+    color: var(--ink);
   }
-  .warn {
-    background: #fff4e5;
-    border-left: 4px solid #d98a1a;
-    padding: 12px 16px;
-    margin: 16px 0;
-    border-radius: 4px;
+  .unit p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 0.92em;
   }
-  footer {
-    margin-top: 3em;
+  .unit .prereq {
+    font-size: 0.78em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .unit a.readlink {
+    display: inline-block;
     font-size: 0.85em;
-    color: #777;
-    border-top: 1px solid #ddd;
-    padding-top: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 5px 12px;
+    border-radius: 6px;
+    align-self: flex-start;
+  }
+  .unit a.readlink:hover {
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  code {
+    background: #eef1f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .codeblock {
+    background: #111827;
+    color: #e5e9f0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: Consolas, monospace;
+    font-size: 0.88em;
+    overflow-x: auto;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding: 24px 20px 40px;
   }
 </style>
 </head>
 <body>
 
-<h1>FDE Dojo</h1>
-<p><span class="badge">Run by Chiron</span><span class="badge">Sandbox only</span></p>
+<header class="hero">
+  <h1>FDE Dojo</h1>
+  <p>Train experienced engineers to operate as Forward Deployed Engineers
+  inside an Agentic SDLC - owning a problem end to end, not waiting for
+  handoffs.</p>
+  <div class="badges">
+    <span class="badge">Run by Chiron</span>
+    <span class="badge">Sandbox only</span>
+    <span class="badge">Track A + Track B</span>
+  </div>
+</header>
 
-<p>
-Welcome. The FDE Dojo trains experienced engineers to operate as
-<strong>Forward Deployed Engineers</strong> inside an Agentic SDLC pipeline:
-owning a piece of work end-to-end (requirements, design, build, test,
-deploy) alongside AI agents, not just waiting for handoffs.
-</p>
+<nav class="toc">
+  <a href="#before-you-start">Before You Start</a>
+  <a href="#how-it-works">How It Works</a>
+  <a href="#track-a">Track A</a>
+  <a href="#track-b">Track B</a>
+  <a href="#sandbox">Sandbox</a>
+  <a href="#start">Start</a>
+</nav>
 
-<p>
-Every exercise here runs in a <strong>sandbox</strong> - a scratch JIRA
-project and a scratch GitHub repo that you or your program admin set up.
-Nothing you do here touches production systems.
-</p>
+<main>
 
-<h2>Before you start</h2>
+<section id="before-you-start">
+  <h2>Before You Start</h2>
+  <p class="section-sub">Three things to have ready before your first session.</p>
+  <div class="step-grid">
+    <div class="step">
+      <strong class="num">1</strong><strong>Install OpenCode</strong>
+      <p style="margin:8px 0 0;color:var(--muted);">or whatever agent runtime
+      your program admin specifies, on your machine.</p>
+    </div>
+    <div class="step">
+      <strong class="num">2</strong><strong>Model provider access</strong>
+      <p style="margin:8px 0 0;color:var(--muted);">Chiron runs on an LLM -
+      typically a GitHub Copilot license, or an internal Azure AI Foundry
+      endpoint. Confirm with your program admin.</p>
+    </div>
+    <div class="step">
+      <strong class="num">3</strong><strong>Sandbox access</strong>
+      <p style="margin:8px 0 0;color:var(--muted);">A scratch JIRA project
+      and a scratch GitHub repo - never your company's real ones.</p>
+    </div>
+  </div>
+  <p style="margin-top:18px;"></p>
+  <div class="warn">
+    <strong>Do not</strong> point any exercise at a real production JIRA
+    project or GitHub repository. The Dojo is a practice space - mistakes
+    here are free; mistakes in production are not.
+  </div>
+</section>
 
-<div class="step">
-<strong>1. Install OpenCode</strong> (or whatever agent runtime your
-program admin specifies) on your machine.
-</div>
+<section id="how-it-works">
+  <h2>How It Works</h2>
+  <p class="section-sub">Two tracks, taken in order, each gated by scenario exercises.</p>
+  <ul>
+    <li><strong>Track A - FDE Fundamentals:</strong> the role itself -
+    turning an ambiguous business ask into a problem statement, embedding
+    with stakeholders, judging the right delivery mechanism. Nothing here
+    is specific to agentic pipelines.</li>
+    <li><strong>Track B - Agentic SDLC Specialization:</strong> how to
+    execute once an agentic pipeline is the chosen delivery mechanism -
+    ticket-state discipline, branch/PR traceability, working alongside
+    build/test agents.</li>
+  </ul>
+  <p>
+  Each unit has a <strong>pre-read</strong> you work through solo, ending in
+  a self-check question. Bring your answer to Chiron, who will gauge your
+  understanding, go deeper, and decide when you're ready to advance.
+  </p>
+</section>
 
-<div class="step">
-<strong>2. Get access to a model provider.</strong> Chiron runs on an LLM -
-typically a <strong>GitHub Copilot license</strong>, or an internal Azure AI
-Foundry endpoint if your organization provides one. Confirm with your
-program admin which to use before you begin.
-</div>
+<section id="track-a">
+  <span class="track-label">Track A</span>
+  <h2>FDE Fundamentals</h2>
+  <p class="section-sub">Mechanism-agnostic. Applies to any delivery approach, not just agentic pipelines.</p>
+  <div class="unit-grid">
+    <div class="unit">
+      <div>
+        <h3>A0 - What an FDE Actually Is</h3>
+        <p>Outcome-owning, not a stage in a relay. Sets up the whole track.</p>
+      </div>
+      <a class="readlink" href="pre-reads/track-a/a0.md">Read A0</a>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>A1 - Why Business Can't Hand You a Clear Ask</h3>
+        <p>Two causes of ambiguity, and a diagnostic question to tell them apart.</p>
+      </div>
+      <a class="readlink" href="pre-reads/track-a/a1.md">Read A1</a>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>A2 - Manufacturing Clarity Through Orchestration</h3>
+        <p>The centerpiece: pulling in the right expert or agent instead of going it alone.</p>
+      </div>
+      <a class="readlink" href="pre-reads/track-a/a2.md">Read A2</a>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>A3 - Anti-Tunnel-Vision Solution Judgment</h3>
+        <p>Three questions before writing a line of code.</p>
+      </div>
+      <a class="readlink" href="pre-reads/track-a/a3.md">Read A3</a>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>A4 - Outcome vs. Output</h3>
+        <p>The habit that checks whether everything else actually worked.</p>
+      </div>
+      <a class="readlink" href="pre-reads/track-a/a4.md">Read A4</a>
+    </div>
+  </div>
+</section>
 
-<div class="step">
-<strong>3. Get sandbox access.</strong> You will need:
-<ul>
-<li>A scratch JIRA project (not your company's real project)</li>
-<li>A scratch GitHub repository you can branch and open PRs against</li>
-</ul>
-Your program admin provisions these for your cohort.
-</div>
+<section id="track-b">
+  <span class="track-label">Track B</span>
+  <h2>Agentic SDLC Specialization</h2>
+  <p class="section-sub"><em>Prerequisite: Track A complete.</em> How to execute once an agentic pipeline is the delivery mechanism.</p>
+  <div class="unit-grid">
+    <div class="unit">
+      <div>
+        <h3>B0 - Orientation</h3>
+        <p>What an Agentic SDLC is and how to read a ticket's full lifecycle.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>B1 - The Pipeline</h3>
+        <p>Choreography vs orchestration, label-based state machines.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>B2 - Requirements and Design</h3>
+        <p>Writing an "agent-ready" ticket; specs becoming sub-tasks.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>B3 - Build and Handoff</h3>
+        <p>Branch/PR conventions for traceability; working with build/test agents.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>B4 - Deploy / Change Management</h3>
+        <p>What "done" means in an agentic pipeline; the FDE's role at cutover.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+    <div class="unit">
+      <div>
+        <h3>Capstone</h3>
+        <p>One sandboxed scenario, start to finish, across all of Track B.</p>
+      </div>
+      <span class="prereq">Pre-read coming soon</span>
+    </div>
+  </div>
+</section>
 
-<div class="warn">
-<strong>Do not</strong> point any exercise at a real production JIRA project
-or GitHub repository. The Dojo is a practice space - mistakes here are free;
-mistakes in production are not.
-</div>
+<section id="sandbox">
+  <h2>Practice Sandbox</h2>
+  <p class="section-sub">Hands-on exercises for Units B1 and B3.</p>
+  <div class="step">
+    <p style="margin-top:0;">
+    <a href="sandbox.html"><strong>sandbox.html</strong></a> is a mock JIRA
+    ticket board and a mock GitHub branch/PR validator, entirely
+    client-side. Nothing on that page touches a real JIRA project or
+    GitHub repo.
+    </p>
+    <p>
+    When you're done, click <strong>Export my work</strong>. It downloads a
+    JSON file recording everything you tried, including mistakes - that's
+    fine, it's a sandbox. Then tell Chiron where the file landed:
+    </p>
+    <div class="codeblock">Chiron, grade my sandbox export at C:\Users\you\Downloads\fde-dojo-sandbox-....json</div>
+    <p style="margin-bottom:0;">
+    Chiron reads the actual recorded actions, not just what you report, so
+    feedback is based on what really happened.
+    </p>
+  </div>
+</section>
 
-<h2>How it works</h2>
-<p>
-The Dojo has two tracks, taken in order:
-</p>
-<ul>
-<li><strong>Track A - FDE Fundamentals:</strong> the role itself - turning
-an ambiguous business ask into a problem statement, embedding with
-stakeholders, and judging the right delivery mechanism. Nothing here is
-specific to agentic pipelines.</li>
-<li><strong>Track B - Agentic SDLC Specialization:</strong> how to execute
-once an agentic pipeline is the chosen delivery mechanism - ticket-state
-discipline, branch/PR traceability, working alongside build/test agents.</li>
-</ul>
-<p>
-You work through each track's units in order. Each unit ends with a
-scenario exercise. Chiron grades your exercise output against a rubric,
-tells you your score and gaps, and decides whether you advance or repeat
-the unit. You can ask Chiron to explain any gap in as much depth as you
-want - the point is understanding, not just a passing score.
-</p>
+<section id="start">
+  <h2>Starting Your First Session</h2>
+  <p>Open your agent runtime and say something like:</p>
+  <div class="codeblock">Chiron, I'm starting the FDE Dojo, Track A Unit 0.</div>
+  <p>
+  Chiron will gauge what you already know before explaining anything -
+  answer honestly, it shapes how deep the first explanation goes.
+  </p>
+</section>
 
-<h2>Track A - FDE Fundamentals</h2>
-
-<div class="unit">
-<h3>Unit A0 - What an FDE actually is</h3>
-<p>The embedded, outcome-owning archetype, contrasted with a typical
-feature-team role.</p>
-</div>
-
-<div class="unit">
-<h3>Unit A1 - From business objective to problem statement</h3>
-<p>Translating an ambiguous ask into a concrete, testable problem
-statement.</p>
-</div>
-
-<div class="unit">
-<h3>Unit A2 - Stakeholder embedding and trust</h3>
-<p>Working directly with the business/customer; reading unstated
-constraints.</p>
-</div>
-
-<div class="unit">
-<h3>Unit A3 - Solution judgment (build vs. buy vs. automate)</h3>
-<p>Choosing the right delivery mechanism for the problem - an agentic
-pipeline is one option, not the default.</p>
-</div>
-
-<div class="unit">
-<h3>Unit A4 - Rapid prototyping under ambiguity</h3>
-<p>Getting to a demonstrable thing fast to de-risk assumptions.</p>
-</div>
-
-<h2>Track B - Agentic SDLC Specialization</h2>
-<p><em>Prerequisite: Track A complete.</em></p>
-
-<div class="unit">
-<h3>Unit B0 - Orientation</h3>
-<p>What an Agentic SDLC is, why the FDE model fits it, and how to read a
-ticket's full lifecycle.</p>
-</div>
-
-<div class="unit">
-<h3>Unit B1 - The Pipeline</h3>
-<p>Choreography vs orchestration, label-based state machines, System of
-Engagement vs System of Execution.</p>
-</div>
-
-<div class="unit">
-<h3>Unit B2 - Requirements and Design</h3>
-<p>Writing an "agent-ready" ticket; how specs become sub-tasks.</p>
-</div>
-
-<div class="unit">
-<h3>Unit B3 - Build and Handoff</h3>
-<p>Branch/PR conventions for traceability; working alongside build/test
-agents.</p>
-</div>
-
-<div class="unit">
-<h3>Unit B4 - Deploy / Change Management</h3>
-<p>What "done" means in an agentic pipeline; the FDE's role at cutover.</p>
-</div>
-
-<div class="unit">
-<h3>Capstone</h3>
-<p>One sandboxed scenario, start to finish, across all of Track B.</p>
-</div>
-
-<h2>Starting your first session</h2>
-<p>
-Open your agent runtime and say something like:
-</p>
-<p><code>Chiron, I'm starting the FDE Dojo, Track A Unit 0.</code></p>
-<p>
-Chiron will gauge what you already know before explaining anything -
-answer honestly, it shapes how deep the first explanation goes.
-</p>
-
-<h2>Practice sandbox</h2>
-<div class="step">
-<p>
-Unit B1 and Unit B3 have a hands-on practice page:
-<a href="sandbox.html"><strong>sandbox.html</strong></a> - a mock JIRA
-ticket board and a mock GitHub branch/PR validator, entirely client-side.
-Nothing on that page touches a real JIRA project or GitHub repo.
-</p>
-<p>
-When you're done, click <strong>Export my work</strong> on that page. It
-downloads a JSON file recording everything you tried (including mistakes -
-that's fine, it's a sandbox). Then tell Chiron where the file landed, e.g.:
-</p>
-<p><code>Chiron, grade my sandbox export at C:\Users\you\Downloads\fde-dojo-sandbox-....json</code></p>
-<p>
-Chiron reads the actual recorded actions, not just what you report, so
-feedback is based on what really happened.
-</p>
-</div>
+</main>
 
 <footer>
-FDE Dojo program charter: see <code>charter.md</code> in this repository.
-Repo: <a href="https://github.com/mchellappa/chiron">github.com/mchellappa/chiron</a>.
-Tracking: CRTTIN-8244.
+  FDE Dojo program charter: see <code>charter.md</code> in this repository.
+  Repo: <a href="https://github.com/mchellappa/chiron">github.com/mchellappa/chiron</a>.
+  Tracking: CRTTIN-8244.
 </footer>
 
 </body>
