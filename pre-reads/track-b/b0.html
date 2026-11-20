@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit B0 - Orientation | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 40px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 1.9em; }
+  nav.crumb {
+    max-width: 760px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.25em; margin: 36px 0 12px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .principle {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 18px 22px; margin: 16px 0; font-size: 1.02em;
+  }
+  .diagram {
+    background: #0f172a; color: #cbd5e1; border-radius: 8px;
+    padding: 18px 20px; margin: 16px 0; font-family: Consolas, monospace;
+    font-size: 0.85em; overflow-x: auto; white-space: pre;
+  }
+  .example {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .prereq-note {
+    background: #eaf7ed; border: 1px solid #bfe3c6; border-left: 4px solid #2f8a3f;
+    border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 0.95em;
+  }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px;
+    font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Track B - Agentic SDLC Specialization</span>
+  <h1>Unit B0 - Orientation</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Track B / Unit B0</nav>
+
+<main>
+
+<div class="prereq-note">
+<strong>Prerequisite:</strong> Track A complete. Everything here assumes you
+already have the instincts from A0-A4 (own the outcome, diagnose ambiguity,
+orchestrate instead of going solo, test before building, check outcome not
+output). Track B is about applying those instincts <em>inside a specific
+delivery mechanism</em> - an agentic pipeline.
+</div>
+
+<h2>Start with what changes, and what doesn't</h2>
+<div class="callout">
+<p>In Track A, "manufacture clarity" and "orchestrate instead of going
+solo" were general skills - you could apply them with a whiteboard and a
+phone call. In an Agentic SDLC, those same instincts now have to work
+<em>through</em> a specific mechanism: tickets, labels, AI agents doing
+stages of work, and a system that tracks all of it.</p>
+<p style="margin-bottom:0;">The business ambiguity problem doesn't go
+away. The orchestration instinct doesn't go away. What's new is the
+machinery you're orchestrating <em>through</em> - and that machinery has
+its own rules that, if you don't understand them, will make you look like
+you're fighting the system instead of using it.</p>
+</div>
+
+<h2>What is an Agentic SDLC</h2>
+<div class="principle">
+<strong>An Agentic SDLC is a software delivery lifecycle where AI agents,
+not just humans, perform stages of the work</strong> - drafting
+requirements, proposing a design, writing code, running tests, preparing a
+release - and a shared system of record (tickets) tracks whose turn it is
+and what state things are in.
+<p style="margin-bottom:0;">The critical design choice in most agentic
+pipelines, including this one, is <strong>choreography over
+orchestration</strong>: there is no single controller telling every agent
+what to do next. Instead, each agent watches the shared state (a ticket's
+labels) and reacts when it sees work addressed to its stage - the way
+dancers follow the music rather than a single conductor calling every
+movement.</p>
+</div>
+
+<h2>Reading a ticket's lifecycle</h2>
+<div class="diagram">SANDBOX-101  ->  stage:requirements-ready
+                 |
+                 v  (Requirements agent/human picks it up)
+             stage:requirements-running
+                 |
+                 v  (requirements finished)
+             stage:requirements-done
+                 |
+                 v  (Design stage begins)
+             stage:design-ready
+                 |
+          +------+------+
+          v             v
+   stage:design-await   stage:build-ready
+   (needs a human        (design clear enough,
+    confirm/decision)     hand to Build)
+</div>
+<p>Every ticket's label tells you - and every agent watching it - exactly
+what state it's in and whose turn it is to act. This is the entire
+coordination mechanism. There is no separate "status meeting" to find out
+what's happening; the label <em>is</em> the status, and it's visible to
+every agent and human at once.</p>
+
+<h2>Why this matters for an FDE specifically</h2>
+<div class="example">
+<p>Recall Track A's orchestration lesson (Unit A2): your job is often
+"pull in the right thing for 15 minutes," not "do everything yourself."
+In an Agentic SDLC, "the right thing" is frequently an agent, and "pulling
+it in" means <strong>getting a ticket into the correct label state so the
+right agent picks it up</strong> - not messaging someone directly.</p>
+<p style="margin-bottom:0;">An FDE who doesn't understand the label
+state machine will try to orchestrate by talking to people, while the
+actual mechanism for getting an agent's help is invisible to them. Reading
+the pipeline correctly is itself an orchestration skill, just translated
+into this specific system.</p>
+</div>
+
+<div class="selfcheck">
+<h2>Self-check</h2>
+<blockquote>Given a ticket currently at <code>stage:design-ready</code>,
+name two different things that could happen next, and what would cause each
+one. What tells you - and every agent - which one is about to happen?</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your answer before moving to Unit
+B1, where we go deeper into the choreography mechanism itself, including
+what happens when a transition is invalid.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="../../index.html">&larr; Back to Dojo home</a>
+  <a href="b1.html">Unit B1 &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>
