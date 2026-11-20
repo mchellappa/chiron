@@ -157,7 +157,51 @@ instructions published at <a href="https://github.com/anomalyco/opencode">
 github.com/anomalyco/opencode</a> as of this writing - if something doesn't
 match, check that page directly.</p>
 
-<h2><span class="step-num">2</span>Get model provider access</h2>
+<h2><span class="step-num">2</span>Get Chiron onto your machine</h2>
+<p class="section-sub">A plain OpenCode install is a generic coding agent.
+This step gives it the Chiron persona - the one that gauges your
+understanding, runs the Socratic loop, and knows the FDE Dojo curriculum.</p>
+
+<div class="os-grid">
+  <div class="os-card">
+    <h4>macOS / Linux</h4>
+    <div class="codeblock">curl -fsSL https://raw.githubusercontent.com/mchellappa/chiron/main/scripts/install-chiron.sh -o install-chiron.sh
+bash install-chiron.sh</div>
+  </div>
+  <div class="os-card">
+    <h4>Windows (PowerShell)</h4>
+    <div class="codeblock">iwr https://raw.githubusercontent.com/mchellappa/chiron/main/scripts/install-chiron.ps1 -OutFile install-chiron.ps1
+.\install-chiron.ps1</div>
+  </div>
+</div>
+
+<p>By default this creates a folder at <code>~/fde-dojo</code> (or
+<code>$HOME\fde-dojo</code> on Windows) containing an
+<code>AGENTS.md</code> file - OpenCode automatically loads this as local
+instructions whenever you run it from inside that folder. This is
+deliberately project-scoped: it does <strong>not</strong> touch or
+overwrite any global OpenCode configuration you already have.</p>
+
+<div class="warn">
+Want a different install location? Pass it as an argument:
+<code>bash install-chiron.sh /path/you/want</code> (macOS/Linux) or
+<code>.\install-chiron.ps1 -TargetDir "C:\path\you\want"</code> (Windows).
+</div>
+
+<p>Confirm it worked:</p>
+<div class="codeblock">cd ~/fde-dojo   <span class="comment"># or your chosen folder</span>
+opencode</div>
+<p>If Chiron greets you as "the educator running the FDE Dojo" instead of
+a generic assistant, it worked.</p>
+
+<span class="verify-tag">Verify</span>
+<p style="font-size:0.9em;color:var(--muted);">How OpenCode loads local
+<code>AGENTS.md</code> files, and whether a newer OpenCode version changes
+this mechanism, is worth confirming against
+<a href="https://opencode.ai/docs">opencode.ai/docs</a> if this step
+doesn't behave as described.</p>
+
+<h2><span class="step-num">3</span>Get model provider access</h2>
 <p class="section-sub">OpenCode needs an LLM behind it. Choose one option
 and configure it before your first session.</p>
 
@@ -196,7 +240,7 @@ commands/config file keys change between OpenCode versions - confirm
 against <a href="https://opencode.ai/docs">opencode.ai/docs</a> or ask your
 program admin for a working config to copy.</p>
 
-<h2><span class="step-num">3</span>Get sandbox access</h2>
+<h2><span class="step-num">4</span>Get sandbox access</h2>
 <p class="section-sub">A scratch JIRA project and a scratch GitHub repo -
 never your company's real ones.</p>
 
@@ -222,6 +266,7 @@ real project repo.</li>
 <p style="margin-top:0;font-weight:600;">Before your first session, confirm you have:</p>
 <ul>
 <li>OpenCode installed and running (<code>opencode --version</code> works)</li>
+<li>Chiron's <code>AGENTS.md</code> in your chosen project folder</li>
 <li>A model provider configured and responding to a test message</li>
 <li>A sandbox JIRA project key you can create tickets in</li>
 <li>A sandbox GitHub repo you can branch and open PRs against</li>
