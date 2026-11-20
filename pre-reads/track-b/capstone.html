@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, #5a3d0f, var(--accent));
+    color: #fff; padding: 44px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 2em; }
+  nav.crumb {
+    max-width: 800px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 800px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.3em; margin: 38px 0 10px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .scenario {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 18px 22px; margin: 16px 0;
+  }
+  .stage-list {
+    background: #fff; border: 2px dashed var(--accent); border-radius: 8px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .stage-list ol { margin-bottom: 0; }
+  .stage-list li { margin-bottom: 12px; }
+  .stage-list .unit-ref {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    color: var(--blue); background: var(--blue-light);
+    padding: 1px 8px; border-radius: 4px; margin-left: 6px;
+  }
+  .rules {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 16px 22px; margin: 16px 0;
+  }
+  .rules ul { margin-bottom: 0; }
+  .rules li { margin-bottom: 8px; }
+  .deliverable {
+    background: #eaf7ed; border: 1px solid #bfe3c6; border-left: 4px solid #2f8a3f;
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  }
+  .warn {
+    background: #fdeeee; border: 1px solid #f0c9c9; border-left: 4px solid #b94a48;
+    border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 0.92em;
+  }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px; font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Capstone</span>
+  <h1>One Ticket, Start to Finish</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Capstone</nav>
+
+<main>
+
+<h2>What this is</h2>
+<div class="callout">
+<p>Every unit so far has isolated one skill: diagnosing ambiguity, orchestrating
+instead of going solo, reading ticket state, writing agent-ready specs,
+naming branches correctly, checking outcome instead of output. The
+Capstone asks you to run all of them together, in order, against a single
+scenario - the way the job actually works. Nobody hands you "the Unit A1
+part" separately from "the Unit B3 part." It all happens on one ticket, at
+once.</p>
+<p style="margin-bottom:0;">There is no new concept here. This is a test
+of whether the instincts from Track A and Track B actually operate
+together, under one continuous thread, not whether you can recite any one
+of them in isolation.</p>
+</div>
+
+<h2>The scenario</h2>
+<div class="scenario">
+<p style="margin-top:0;">A stakeholder messages you:</p>
+<p style="font-size:1.05em;font-style:italic;">"Advisors keep calling
+support asking why a client's beneficiary update didn't go through. Can
+you look into it?"</p>
+<p style="margin-bottom:0;">That is the entire starting input. No ticket
+exists yet. Nobody has measured anything. You do not know if this is a UI
+problem, a data problem, a process problem, or a training problem. Treat
+this as a real intake, not a test question with a hidden right answer.</p>
+</div>
+
+<h2>Walk it through every stage</h2>
+<div class="stage-list">
+<ol>
+<li><strong>Diagnose the ambiguity.</strong> Is this vision-doesn't-exist
+or vision-wasn't-communicated? Use the diagnostic question.
+<span class="unit-ref">A1</span></li>
+<li><strong>Decide what you personally don't know</strong>, and who or
+what would close that gap fastest - a domain expert, an agent, an existing
+log/document. Name the specific gap, not just "I'd ask someone."
+<span class="unit-ref">A2</span></li>
+<li><strong>Apply the three-question test</strong> before proposing any
+build: what decision does this unblock, what's the cheapest evidence, and
+only then, what's the smallest code (if any).
+<span class="unit-ref">A3</span></li>
+<li><strong>Write the agent-ready ticket</strong> that would result from
+the above: acceptance criteria, scope, non-goals.
+<span class="unit-ref">B2</span></li>
+<li><strong>Break it into sub-tasks</strong> with correct dependency
+(Blocks) order, the way a Design stage would.
+<span class="unit-ref">B2</span></li>
+<li><strong>Work the ticket through the sandbox</strong>
+(<a href="../../sandbox.html">sandbox.html</a>): transition the label
+state correctly, and produce a correctly formatted branch name and PR
+title for at least one sub-task.
+<span class="unit-ref">B1 / B3</span></li>
+<li><strong>Write the cutover plan</strong>: verification step, rollback
+awareness, and the stakeholder message you'd send at deploy.
+<span class="unit-ref">B4</span></li>
+<li><strong>Write the outcome-check sentence</strong>: the specific metric
+or decision this was supposed to move, and when you'll check it.
+<span class="unit-ref">A4</span></li>
+</ol>
+</div>
+
+<h2>Rules for this exercise</h2>
+<div class="rules">
+<ul>
+<li>Do it in order - don't jump to step 6 because it's the most concrete.
+The ordering is the point; most real failures come from skipping straight
+to code.</li>
+<li>Write actual artifacts, not descriptions of what you'd write. A real
+ticket text, a real branch name, a real one-sentence outcome check - not
+"I would write a ticket that says roughly..."</li>
+<li>If you get stuck at any step, that's useful information - tell Chiron
+exactly where, rather than skipping ahead and hoping it resolves itself.</li>
+</ul>
+</div>
+
+<h2>Deliverable</h2>
+<div class="deliverable">
+<p style="margin-top:0;">Bring to Chiron, in one sitting or across a short
+series of messages:</p>
+<ul style="margin-bottom:0;">
+<li>Your ambiguity diagnosis and evidence (step 1)</li>
+<li>The specific gap and how you'd close it (step 2)</li>
+<li>Your answers to the three questions (step 3)</li>
+<li>The actual ticket text (step 4) and sub-task breakdown (step 5)</li>
+<li>Your sandbox export file after completing step 6, or a description of
+what the sandbox log showed</li>
+<li>The cutover plan (step 7) and outcome-check sentence (step 8)</li>
+</ul>
+</div>
+
+<div class="warn">
+This is deliberately not graded by a rubric yet (per the current program
+design) - Chiron will walk through your artifacts with you, point out where
+the chain breaks or holds together, and tell you honestly which Track A/B
+units to revisit if something doesn't connect.
+</div>
+
+<div class="selfcheck">
+<h2>Before you start</h2>
+<blockquote>Of the eight steps above, which one do you expect to be
+hardest for you, based on how the individual units went? Say why, before
+you start - then see if you were right.</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your prediction, then begin the
+walkthrough.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="b4.html">&larr; Unit B4</a>
+  <a href="../../index.html">Back to Dojo home &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>

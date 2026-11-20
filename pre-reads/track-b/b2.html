@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit B2 - Requirements and Design | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 40px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 1.9em; }
+  nav.crumb {
+    max-width: 760px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.25em; margin: 36px 0 12px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .principle {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 18px 22px; margin: 16px 0; font-size: 1.02em;
+  }
+  .checklist {
+    background: #fff; border: 2px dashed var(--accent); border-radius: 8px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .checklist ul { margin-bottom: 0; }
+  .checklist li { margin-bottom: 8px; }
+  .example {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .bad-good {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0;
+  }
+  .bad-good > div { border-radius: 8px; padding: 14px 16px; font-size: 0.9em; }
+  .bad-good .bad { background: #fdeeee; border: 1px solid #f0c9c9; }
+  .bad-good .good { background: #eaf7ed; border: 1px solid #bfe3c6; }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px;
+    font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Track B - Agentic SDLC Specialization</span>
+  <h1>Unit B2 - Requirements and Design</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Track B / Unit B2</nav>
+
+<main>
+
+<h2>Start with a ticket an agent can't use</h2>
+<div class="callout">
+<p>"Improve the renewals process." That's a fine thing to say to a human in
+a hallway. Handed to a Requirements-stage agent as a ticket, it produces
+nothing useful - the agent has no acceptance criteria to check against, no
+scope boundary to respect, and no way to know when it's done.</p>
+<p style="margin-bottom:0;">This isn't a new problem - it's Track A's Unit
+A1 (ambiguity has two causes) showing up again, except now the "listener"
+confused by the ambiguity is an agent instead of a person, and agents don't
+ask clarifying questions the way a human teammate might. The ambiguity has
+to be resolved <em>before</em> the ticket reaches the agent, not during.</p>
+</div>
+
+<h2>The principle</h2>
+<div class="principle">
+<strong>"Agent-ready" means the ticket contains everything an agent needs
+to act without guessing: explicit acceptance criteria, explicit scope, and
+explicit non-goals.</strong> A human reading a vague ticket can go ask the
+author what they meant. An agent reading the same ticket either guesses
+(and is often wrong) or stalls.
+</div>
+
+<h2>What "agent-ready" actually looks like</h2>
+<div class="checklist">
+<p style="margin-top:0;">Before a ticket enters <code>stage:requirements-ready</code>,
+it should answer:</p>
+<ul>
+<li><strong>Acceptance criteria</strong> - what observable condition means
+this is done? Not "renewals are faster," but "90% of renewals complete
+within 48 hours."</li>
+<li><strong>Scope</strong> - which part of the system/process does this
+touch? Named explicitly, not implied.</li>
+<li><strong>Non-goals</strong> - what this ticket deliberately does NOT
+attempt, so an agent (or the next human) doesn't quietly expand scope.</li>
+</ul>
+</div>
+
+<div class="bad-good">
+<div class="bad"><strong>Not agent-ready</strong><br>"Improve the renewals
+process."</div>
+<div class="good"><strong>Agent-ready</strong><br>"Reduce renewal
+processing time at the underwriting handoff step from 5 days average to
+under 2 days. Scope: underwriting handoff only. Non-goal: do not change the
+advisor-facing renewal form."</div>
+</div>
+
+<h2>From spec to sub-tasks: the Design stage</h2>
+<p>Once requirements are agent-ready, a Design-stage agent (or human) breaks
+the spec into sub-tasks with correct dependency links - e.g., a data-model
+change must finish before the integration that depends on it starts. This
+is where the ticket-state machine from Unit B1 starts to matter
+operationally: each sub-task gets its own label lifecycle, and the
+dependency order has to be reflected correctly (a Blocks-link, not just a
+list) so the choreography doesn't let a dependent sub-task start early.</p>
+
+<h2>Worked example</h2>
+<div class="example">
+<p>Spec: "Reduce renewal processing time at the underwriting handoff from 5
+days to under 2 days." Design breaks this into:</p>
+<ol style="margin-bottom:0;">
+<li>Sub-task: instrument the handoff step to measure current delay sources
+(no dependency, starts first)</li>
+<li>Sub-task: build the fix for the top delay source found (Blocks-link:
+depends on sub-task 1's findings)</li>
+<li>Sub-task: validate the 48-hour target against 3 weeks of post-fix data
+(Blocks-link: depends on sub-task 2 being deployed) - this is also the
+Unit A4 "outcome check," now formalized as its own tracked sub-task instead
+of an informal habit</li>
+</ol>
+</div>
+
+<div class="selfcheck">
+<h2>Self-check</h2>
+<blockquote>Take a real or plausible vague ask from your own work. Rewrite
+it as an agent-ready ticket with acceptance criteria, scope, and
+non-goals. Then identify at least two sub-tasks a Design stage would create
+from it, and which one blocks the other.</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your rewritten ticket and sub-task
+breakdown before moving to Unit B3, where we cover how those sub-tasks turn
+into actual branches and PRs.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="b1.html">&larr; Unit B1</a>
+  <a href="b3.html">Unit B3 &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>

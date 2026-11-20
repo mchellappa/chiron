@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Guide | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 44px 24px 36px; text-align: center;
+  }
+  header.unit-hero h1 { margin: 0 0 8px; font-size: 2em; }
+  header.unit-hero p { margin: 0 auto; max-width: 600px; color: #dce6f5; }
+  nav.crumb {
+    max-width: 820px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 820px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.35em; margin: 42px 0 6px;
+    border-bottom: 2px solid var(--border); padding-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2 .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--blue);
+    color: #fff; font-size: 0.65em; font-weight: 700; flex-shrink: 0;
+  }
+  h3 { color: var(--ink); font-size: 1.05em; margin: 22px 0 8px; }
+  .section-sub { color: var(--muted); font-size: 0.95em; margin: 0 0 18px; }
+  .os-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin: 14px 0;
+  }
+  .os-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 18px; box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .os-card h4 {
+    margin: 0 0 10px; font-size: 0.95em; color: var(--navy);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .codeblock {
+    background: #0f172a; color: #e2e8f0; border-radius: 8px;
+    padding: 14px 16px; margin: 10px 0; font-family: Consolas, monospace;
+    font-size: 0.85em; overflow-x: auto; white-space: pre;
+  }
+  .codeblock .comment { color: #7d93b3; }
+  .verify-tag {
+    display: inline-block; font-size: 0.72em; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase; color: #8a5a00;
+    background: #fff3d6; border: 1px solid #f0d78c;
+    padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+  }
+  .option-box {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .option-box.recommended { border-left-color: #2f8a3f; }
+  .option-tag {
+    display: inline-block; font-size: 0.72em; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase; color: #fff;
+    background: #2f8a3f; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+  }
+  .checklist {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 16px 22px; margin: 16px 0;
+  }
+  .checklist ul { margin-bottom: 0; }
+  .checklist li { margin-bottom: 8px; }
+  .warn {
+    background: #fff8ec; border: 1px solid #f1d9a3; border-left: 4px solid var(--accent);
+    padding: 14px 18px; border-radius: 8px; font-size: 0.92em; margin: 16px 0;
+  }
+  ol.numbered li { margin-bottom: 10px; }
+  .final-check {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 30px;
+  }
+  .final-check h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .final-check ul { margin-bottom: 0; }
+  .final-check li { margin-bottom: 8px; }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px; font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <h1>Setup Guide</h1>
+  <p>Everything you need installed and configured before your first Dojo session.</p>
+</header>
+<nav class="crumb"><a href="index.html">FDE Dojo</a> / Setup Guide</nav>
+
+<main>
+
+<h2><span class="step-num">1</span>Install OpenCode</h2>
+<p class="section-sub">OpenCode is the agent runtime Chiron runs on. Pick the method for your OS.</p>
+
+<div class="os-grid">
+  <div class="os-card">
+    <h4>macOS / Linux (quick install)</h4>
+    <div class="codeblock">curl -fsSL https://opencode.ai/v2/install | bash</div>
+  </div>
+  <div class="os-card">
+    <h4>macOS / Linux (Homebrew, recommended)</h4>
+    <div class="codeblock">brew install anomalyco/tap/opencode-v2</div>
+  </div>
+  <div class="os-card">
+    <h4>Any OS (Node package managers)</h4>
+    <div class="codeblock">npm i -g @opencode/cli@latest
+<span class="comment"># or: bun / pnpm / yarn</span></div>
+  </div>
+  <div class="os-card">
+    <h4>Windows (desktop app)</h4>
+    <p style="margin:0 0 8px;font-size:0.9em;">Download <code>opencode-desktop-win-x64.exe</code>
+    from <a href="https://opencode.ai/download">opencode.ai/download</a> (beta).</p>
+  </div>
+</div>
+
+<div class="warn">
+If you already have an older OpenCode install, remove versions prior to
+0.1.x first to avoid conflicts.
+</div>
+
+<p>The install script places OpenCode at <code>$HOME/.opencode/bin</code>.
+Verify it worked by opening a new terminal and running:</p>
+<div class="codeblock">opencode --version</div>
+
+<span class="verify-tag">Verify</span>
+<p style="font-size:0.9em;color:var(--muted);">Install commands are
+version-sensitive and change over time. This reflects the install
+instructions published at <a href="https://github.com/anomalyco/opencode">
+github.com/anomalyco/opencode</a> as of this writing - if something doesn't
+match, check that page directly.</p>
+
+<h2><span class="step-num">2</span>Get model provider access</h2>
+<p class="section-sub">OpenCode needs an LLM behind it. Choose one option
+and configure it before your first session.</p>
+
+<div class="option-box recommended">
+<span class="option-tag">Option A</span>
+<h3 style="margin-top:0;">GitHub Copilot (simplest for individuals)</h3>
+<ol class="numbered">
+<li>Confirm you have an active GitHub Copilot license (Individual,
+Business, or Enterprise) through your GitHub account.</li>
+<li>In OpenCode, run the authentication flow for the Copilot provider -
+typically <code>opencode auth login</code> and select GitHub Copilot when
+prompted, or follow the provider setup in OpenCode's docs at
+<a href="https://opencode.ai/docs">opencode.ai/docs</a>.</li>
+<li>Confirm the model is reachable by starting OpenCode and sending a
+test message.</li>
+</ol>
+</div>
+
+<div class="option-box">
+<span class="option-tag" style="background:var(--blue);">Option B</span>
+<h3 style="margin-top:0;">Azure AI Foundry endpoint (if your organization provides one)</h3>
+<ol class="numbered">
+<li>Get the Foundry project endpoint URL and a deployed model name from
+your program admin (e.g. the squad's existing Foundry deployment).</li>
+<li>Get an API key or confirm you have RBAC access (e.g.
+<code>Cognitive Services OpenAI User</code>) for that project.</li>
+<li>Configure OpenCode to point at that endpoint instead of Copilot - see
+OpenCode's provider configuration docs for the exact config keys, since
+this is specific to your OpenCode version.</li>
+</ol>
+</div>
+
+<span class="verify-tag">Verify</span>
+<p style="font-size:0.9em;color:var(--muted);">Exact provider configuration
+commands/config file keys change between OpenCode versions - confirm
+against <a href="https://opencode.ai/docs">opencode.ai/docs</a> or ask your
+program admin for a working config to copy.</p>
+
+<h2><span class="step-num">3</span>Get sandbox access</h2>
+<p class="section-sub">A scratch JIRA project and a scratch GitHub repo -
+never your company's real ones.</p>
+
+<h3>Sandbox JIRA</h3>
+<ol class="numbered">
+<li>If your program admin provides a shared sandbox JIRA project, get
+invited to it and confirm you can create/transition tickets.</li>
+<li>If setting up your own: sign up for a free Atlassian Cloud trial at
+<a href="https://www.atlassian.com/software/jira/free">atlassian.com/software/jira/free</a>,
+create a new project, and note its project key (e.g. <code>SANDBOX</code>).</li>
+</ol>
+
+<h3>Sandbox GitHub repo</h3>
+<ol class="numbered">
+<li>If your program admin provides a shared sandbox repo, get added as a
+collaborator.</li>
+<li>If setting up your own: create a new (private is fine) repository on
+your personal GitHub account dedicated to Dojo exercises - do not reuse a
+real project repo.</li>
+</ol>
+
+<div class="checklist">
+<p style="margin-top:0;font-weight:600;">Before your first session, confirm you have:</p>
+<ul>
+<li>OpenCode installed and running (<code>opencode --version</code> works)</li>
+<li>A model provider configured and responding to a test message</li>
+<li>A sandbox JIRA project key you can create tickets in</li>
+<li>A sandbox GitHub repo you can branch and open PRs against</li>
+</ul>
+</div>
+
+<div class="final-check">
+<h2>Ready to start</h2>
+<p>Open OpenCode and say:</p>
+<div class="codeblock" style="background:#1f2937;">Chiron, I'm starting the FDE Dojo, Track A Unit 0.</div>
+<p style="margin-bottom:0;">If something above didn't work, tell Chiron
+what failed (the exact error, if any) rather than guessing past it -
+getting the environment right matters before the curriculum starts.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="index.html">&larr; Back to Dojo home</a>
+  <a href="pre-reads/track-a/a0.html">Start Unit A0 &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>

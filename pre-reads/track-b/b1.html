@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit B1 - The Pipeline | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 40px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 1.9em; }
+  nav.crumb {
+    max-width: 760px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.25em; margin: 36px 0 12px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .principle {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 18px 22px; margin: 16px 0; font-size: 1.02em;
+  }
+  .principle ul { margin-bottom: 0; }
+  .principle li { margin-bottom: 8px; }
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0;
+  }
+  .compare > div {
+    border-radius: 8px; padding: 14px 16px; font-size: 0.92em;
+  }
+  .compare .orch { background: #fdeeee; border: 1px solid #f0c9c9; }
+  .compare .chor { background: #eaf7ed; border: 1px solid #bfe3c6; }
+  .diagram {
+    background: #0f172a; color: #cbd5e1; border-radius: 8px;
+    padding: 18px 20px; margin: 16px 0; font-family: Consolas, monospace;
+    font-size: 0.85em; overflow-x: auto; white-space: pre;
+  }
+  .example {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .try-it {
+    background: #fff; border: 2px dashed var(--accent); border-radius: 8px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px;
+    font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Track B - Agentic SDLC Specialization</span>
+  <h1>Unit B1 - The Pipeline</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Track B / Unit B1</nav>
+
+<main>
+
+<h2>Start with a dance, not an orchestra</h2>
+<div class="callout">
+<p>An orchestra has a conductor: one person, one baton, every musician
+watching for the cue. If the conductor stops, the music stops.</p>
+<p style="margin-bottom:0;">A folk dance has no conductor. Dancers watch
+each other and the music itself, and know their move because of what just
+happened, not because someone directed them. Remove any one dancer and the
+dance continues - the others adapt to the state of the floor.</p>
+</div>
+
+<h2>The principle</h2>
+<div class="principle">
+<strong>Orchestration</strong> means a central controller decides and
+directs every step. <strong>Choreography</strong> means independent agents
+watch shared state and react - no central controller required. This
+pipeline is choreography: there is no master process telling the
+Requirements agent, then the Design agent, then the Build agent, what to
+do in sequence. Each agent watches ticket labels and acts when it sees work
+addressed to its stage.
+<div class="compare">
+<div class="orch"><strong>Orchestration</strong><br>One controller calls
+every step. Fragile if the controller fails. Simple to reason about
+centrally.</div>
+<div class="chor"><strong>Choreography (this pipeline)</strong><br>Agents
+react to shared state independently. Resilient - no single point of
+failure. Harder to see "the whole picture" at a glance - you have to read
+the state.</div>
+</div>
+</div>
+
+<h2>The mechanism: labels as the entire coordination layer</h2>
+<p>A ticket's label is not a cosmetic tag. It <strong>is</strong> the
+coordination protocol:</p>
+<div class="diagram">stage:&lt;name&gt;-ready     -&gt; an agent should pick this up now
+stage:&lt;name&gt;-running   -&gt; an agent is actively working it
+stage:&lt;name&gt;-done      -&gt; this stage finished; next stage's agent
+                         should now see a -ready label appear
+stage:&lt;name&gt;-await     -&gt; stopped for a human decision; no agent
+                         will proceed until a human acts
+stage:blocked           -&gt; something is wrong; nothing proceeds until
+                         a human investigates
+</div>
+<p>The poller watching all this is deliberately "dumb" - it does not
+second-guess an agent's output. If an agent says a stage is done, the
+poller advances the label. It does not evaluate quality. That evaluation is
+the agent's (or your) job, before declaring done.</p>
+
+<h2>Try it yourself</h2>
+<div class="try-it">
+<p style="margin-top:0;">Open <a href="../../sandbox.html">sandbox.html</a>
+and use Panel 1 (the mock ticket board). Try clicking <strong>"Skip to
+Build"</strong> while the ticket is still at
+<code>stage:requirements-ready</code>.</p>
+<p style="margin-bottom:0;">Watch what the event log says. That rejection
+is exactly what a real choreography poller would do: it will not advance a
+ticket through an invalid transition, no matter how badly you want to skip
+ahead. The valid path has to be walked in order.</p>
+</div>
+
+<h2>Worked example</h2>
+<div class="example">
+<p>A ticket sits at <code>stage:design-done</code>. The Build agent is
+watching for <code>stage:build-ready</code>. Nobody manually tells the
+Build agent "your turn" - the moment something (a human or the Design
+agent) applies the <code>stage:build-ready</code> label, the Build agent
+notices and starts, because that is the state it watches for.</p>
+<p style="margin-bottom:0;">If you, as the FDE, want the Build agent to
+look at something right now, you don't message it - you make sure the
+ticket's label is correctly at <code>stage:build-ready</code>. That is the
+"orchestration" move inside this specific mechanism (tying back to Track
+A's Unit A2: the smallest useful action is often "get the system state
+right," not "do the work yourself").</p>
+</div>
+
+<div class="selfcheck">
+<h2>Self-check</h2>
+<blockquote>In the sandbox, try two more invalid transitions and one valid
+chain all the way to <code>stage:build-ready</code>. What's the shortest
+valid path from <code>stage:requirements-ready</code> to
+<code>stage:build-ready</code>, and what would happen if a label got stuck
+at <code>stage:design-await</code> with nobody watching?</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your answers (and what the sandbox
+log showed) before moving to Unit B2.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="b0.html">&larr; Unit B0</a>
+  <a href="b2.html">Unit B2 &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>
