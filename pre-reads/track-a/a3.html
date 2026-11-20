@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit A3 - Anti-Tunnel-Vision Solution Judgment | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 40px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 1.9em; }
+  nav.crumb {
+    max-width: 760px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.25em; margin: 36px 0 12px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .principle {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 18px 22px; margin: 16px 0; font-size: 1.02em;
+  }
+  .test-box {
+    background: #fff; border: 2px dashed var(--accent); border-radius: 8px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .test-box ol { margin-bottom: 0; }
+  .test-box li { margin-bottom: 10px; }
+  .example {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .example ol { margin-bottom: 0; }
+  .example li { margin-bottom: 8px; }
+  .failure-note {
+    background: #fdeeee; border: 1px solid #f0c9c9; border-left: 4px solid #b94a48;
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px;
+    font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Track A - FDE Fundamentals</span>
+  <h1>Unit A3 - Anti-Tunnel-Vision Solution Judgment</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Track A / Unit A3</nav>
+
+<main>
+
+<h2>Start with the reflex</h2>
+<div class="callout">
+<p>A stakeholder describes a problem. Within seconds, an engineer's brain
+produces a familiar answer: "I'll write a script for that," or "this needs
+a new microservice," or "let's add a field to the database." That reflex
+fires before the problem is even fully understood - because it's the
+pattern the engineer already knows how to execute.</p>
+<p style="margin-bottom:0;">This is the narrow-focus failure mode in its
+purest form: <strong>reaching for the known tool before confirming it's
+the right-sized response.</strong> It feels productive (you're already
+coding) while actually skipping the one question that matters most.</p>
+</div>
+
+<h2>The principle</h2>
+<div class="principle">
+<strong>Before committing effort, ask: "What is the smallest thing that
+would teach us something, or move the outcome, right now?"</strong> Not
+the smallest thing that's technically interesting. Not the smallest
+version of the solution you already had in mind. The smallest thing, full
+stop - which, per Unit A2, is very often "get the right person or agent
+involved for 15 minutes," not "write code."
+<p style="margin-bottom:0;">This reframes "MVP thinking" away from "ship a
+smaller version of my planned feature" toward "find the cheapest possible
+way to learn whether my planned feature is even the right direction."</p>
+</div>
+
+<h2>A simple test before building anything</h2>
+<div class="test-box">
+<p style="margin-top:0;">Ask three questions, in order, before writing a
+line of code:</p>
+<ol>
+<li><strong>What decision does this unblock?</strong> If you can't name
+one, you're building for its own sake.</li>
+<li><strong>What's the cheapest way to get evidence for that decision?</strong>
+Often it's not code - it's a conversation, a query against existing data, a
+quick agent-drafted mockup.</li>
+<li><strong>Only if the cheapest way still requires code - what's the
+smallest version of that code that produces evidence?</strong> Not the
+smallest version of the final feature - the smallest version that tells
+you if you're right.</li>
+</ol>
+</div>
+
+<h2>Worked example</h2>
+<div class="example">
+<p>Stakeholder: "We should build a recommendation engine to suggest the
+right retirement plan to advisors."</p>
+<p>Reflex answer: start designing a recommendation model.</p>
+<p>Apply the three questions:</p>
+<ol>
+<li>Decision to unblock: whether advisors are currently picking suboptimal
+plans often enough to matter.</li>
+<li>Cheapest evidence: query existing data for how often advisors change
+their plan choice after a supervisor review - a proxy for "wrong first
+guess" - no model needed yet.</li>
+<li>If that data shows a real problem, <em>then</em> the smallest code is
+not a full recommendation engine - it's a simple rules-based suggestion for
+the single most common mistake pattern the data revealed.</li>
+</ol>
+<p style="margin-bottom:0;">The reflex ("build a recommendation engine")
+might still be right eventually - but arriving at it through evidence, in
+the right order, is the difference between an FDE and an engineer who
+happened to guess correctly.</p>
+</div>
+
+<h2>The failure mode this corrects</h2>
+<div class="failure-note">
+<p style="margin-bottom:0;">This unit is the direct, practical antidote to
+"narrow focus / solution tunnel vision": it inserts a mandatory
+evidence-gathering step between "problem stated" and "code written," so the
+familiar tool only gets used once it's actually confirmed to be the
+right-sized response - not because it's the first thing that came to
+mind.</p>
+</div>
+
+<div class="selfcheck">
+<h2>Self-check</h2>
+<blockquote>Recall a time you started building something and only partway
+through realized it wasn't really what was needed. Apply the three
+questions retroactively - at which question would the mismatch have
+surfaced earlier?</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your answer before moving to Unit
+A4, where we check whether the "right" thing you eventually built actually
+produced an outcome, or just an output.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="a2.html">&larr; Unit A2</a>
+  <a href="a4.html">Unit A4 &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>

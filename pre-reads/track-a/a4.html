@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit A4 - Outcome vs. Output | FDE Dojo</title>
+<style>
+  :root {
+    --navy: #0f2a4a; --blue: #1a4d8f; --blue-light: #eaf1fb;
+    --accent: #c9972c; --ink: #1c1f26; --muted: #5b6372;
+    --border: #e1e5eb; --bg: #f7f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Segoe UI, -apple-system, Arial, sans-serif;
+    margin: 0; color: var(--ink); background: var(--bg); line-height: 1.65;
+  }
+  a { color: var(--blue); }
+  header.unit-hero {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: #fff; padding: 40px 24px 36px; text-align: center;
+  }
+  header.unit-hero .track-label {
+    display: inline-block; font-size: 0.75em; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 12px;
+  }
+  header.unit-hero h1 { margin: 0; font-size: 1.9em; }
+  nav.crumb {
+    max-width: 760px; margin: 0 auto; padding: 14px 24px 0;
+    font-size: 0.88em; color: var(--muted);
+  }
+  nav.crumb a { color: var(--blue); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  h2 {
+    color: var(--navy); font-size: 1.25em; margin: 36px 0 12px;
+    border-bottom: 2px solid var(--border); padding-bottom: 8px;
+  }
+  .callout {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--blue);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(15,42,74,0.04);
+  }
+  .principle {
+    background: var(--blue-light); border: 1px solid #cfe0f5; border-radius: 8px;
+    padding: 18px 22px; margin: 16px 0; font-size: 1.02em;
+  }
+  .habit-box {
+    background: #fff; border: 2px dashed var(--accent); border-radius: 8px;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .example {
+    background: #fcfaf5; border: 1px solid #ecdfb8; border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+  }
+  .failure-note {
+    background: #fdeeee; border: 1px solid #f0c9c9; border-left: 4px solid #b94a48;
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  }
+  .wrap-note {
+    background: #eaf7ed; border: 1px solid #bfe3c6; border-left: 4px solid #2f8a3f;
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  }
+  .selfcheck {
+    background: #111827; color: #e5e9f0; border-radius: 10px;
+    padding: 22px 24px; margin-top: 28px;
+  }
+  .selfcheck h2 { color: #fff; border-bottom-color: #2a3444; margin-top: 0; }
+  .selfcheck blockquote {
+    margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--accent);
+    font-style: italic; color: #f1e9d2;
+  }
+  .nav-buttons {
+    display: flex; justify-content: space-between; margin-top: 40px;
+    font-size: 0.9em;
+  }
+  .nav-buttons a {
+    border: 1px solid var(--blue); padding: 8px 16px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+  .nav-buttons a:hover { background: var(--blue); color: #fff; }
+  footer {
+    text-align: center; font-size: 0.82em; color: var(--muted);
+    border-top: 1px solid var(--border); padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="unit-hero">
+  <span class="track-label">Track A - FDE Fundamentals</span>
+  <h1>Unit A4 - Outcome vs. Output</h1>
+</header>
+<nav class="crumb"><a href="../../index.html">FDE Dojo</a> / Track A / Unit A4</nav>
+
+<main>
+
+<h2>Start with two "done"s</h2>
+<div class="callout">
+<p>Engineer A says: "Done - I shipped the shortened onboarding flow, four
+screens instead of eight, deployed Friday."</p>
+<p>Engineer B says: "Done - new advisor time-to-first-sale dropped from 12
+days to 7 after the shortened flow went live; I checked three weeks of data
+before calling it done."</p>
+<p style="margin-bottom:0;">Both engineers may have written the same code.
+Only one of them knows whether the work actually mattered.</p>
+</div>
+
+<h2>The principle</h2>
+<div class="principle">
+<strong>Output is what you produced. Outcome is whether the thing you
+produced changed the number the business actually cares about.</strong>
+They are not the same, and shipping output confidently creates a false
+sense of completion - "done" starts to mean "I finished my part," which is
+precisely the stage-of-a-relay thinking Unit A0 said an FDE refuses.
+<p style="margin-bottom:0;">This is the final check on everything else in
+this track: Unit A1 helped you figure out what clarity was missing, Unit A2
+and A3 got you to build the smallest useful thing fast and for the right
+reason - but none of that matters if you never go back and check whether it
+worked.</p>
+</div>
+
+<h2>Why this is easy to skip</h2>
+<p>Checking outcome requires going back to something you've already called
+"done," at a point when you're already moving on to the next task, and
+sometimes confirming that it <em>didn't</em> work - which is uncomfortable
+to surface, especially if deploying it took real effort. The
+organizational incentive (ticket closed, sprint velocity counted) rewards
+output. Outcome checking is not automatically rewarded the same way - you
+have to do it because the role requires it, not because anyone is
+explicitly asking.</p>
+
+<h2>A simple habit</h2>
+<div class="habit-box">
+<p style="margin-top:0;">Before calling anything "done," write down, in
+one sentence, <strong>what metric or decision this was supposed to move,
+and when you will check it.</strong> Not "this will probably help" - a
+specific thing, a specific time. Then actually check it at that time, even
+if nobody asks you to, and say so out loud (to the stakeholder, to your
+team) whether it worked or not.</p>
+<p style="margin-bottom:0;">If you can't write that one sentence before
+shipping, that's a signal you skipped Unit A1's diagnostic step and built
+something without a clear target in the first place.</p>
+</div>
+
+<h2>Worked example</h2>
+<div class="example">
+<p>Continuing the onboarding scenario: before deploying the 4-screen flow,
+the sentence would be: "This should reduce new-advisor time-to-first-sale,
+check at 3 weeks post-launch against the prior 12-day baseline." Three
+weeks later, you pull the number.</p>
+<div class="wrap-note">If it dropped to 7 days - genuine outcome, worth
+saying so.</div>
+<p style="margin-bottom:0;">If it stayed at 12 days, the output shipped,
+but the outcome didn't follow - and that's valuable information too: maybe
+screen count wasn't the actual bottleneck, and Unit A1's diagnosis needs
+revisiting with a new round of co-discovery.</p>
+</div>
+
+<h2>The failure mode this corrects</h2>
+<div class="failure-note">
+<p style="margin-bottom:0;">This directly answers "don't understand
+business objectives, outcomes" - not by teaching an abstract definition,
+but by making outcome-checking a concrete habit with a deadline, attached
+to every piece of work, not a separate "soft skill" exercise.</p>
+</div>
+
+<div class="selfcheck">
+<h2>Self-check</h2>
+<blockquote>Pick a recent "done" piece of work. Can you state, right now,
+the metric it was meant to move and whether it actually moved? If you
+can't answer that without new investigation, what does that tell you about
+how "done" was defined at the time?</blockquote>
+<p style="margin-bottom:0;">Tell Chiron your answer. This closes Track A -
+from here, Chiron will walk through all four self-checks with you together
+before moving to Track B, where these same instincts get applied inside
+the actual agentic pipeline mechanics.</p>
+</div>
+
+<div class="nav-buttons">
+  <a href="a3.html">&larr; Unit A3</a>
+  <a href="../../index.html">Back to Dojo home &rarr;</a>
+</div>
+
+</main>
+<footer>FDE Dojo. Tracking: CRTTIN-8244.</footer>
+</body>
+</html>
